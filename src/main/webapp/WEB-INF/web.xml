@@ -12,7 +12,11 @@
         coupon.web.app.filters;
         coupon.web.app.exception;
         coupon.web.app.tests;
-        servicebeans
+        com.couponsystem.beans;
+        com.couponsystem.beans.Coupon.CouponType;
+        com.couponsystem.beans.Coupon;
+        com.couponsystem.beans.Customer;
+        com.couponsystem
       </param-value>
     </init-param>
     <load-on-startup>1</load-on-startup>

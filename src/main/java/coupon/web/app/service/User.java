@@ -1,5 +1,6 @@
 package coupon.web.app.service;
 
+
 import javax.xml.bind.annotation.XmlRootElement;
 
 
@@ -43,6 +44,7 @@ public void setClientType(String clientType) {
 public String toString() {
 	return "User [username=" + username + ", password=" + password + ", clientType=" + clientType + "]";
 }
+
 
 
 }

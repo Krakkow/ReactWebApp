@@ -1,7 +1,7 @@
 package coupon.web.app.filters;
 
 import coupon.web.app.service.Login;
-import facade.CouponClientFacade;
+import com.couponsystem.facadedao.CouponClientFacade;
 
 import java.io.IOException;
 import javax.servlet.Filter;
@@ -33,8 +33,8 @@ public class AuthenticationFilter implements Filter {
         System.out.println("DEBUG : Current URL is "+urlCurrentPath);
         System.out.println("DEBUG : filter() on ServerAuthenticationFilter");
         CouponClientFacade facade = (CouponClientFacade) Login.getFacade(request);
-        boolean NotloggedIn=facade==null&&((!uriCurrentPath.equals("/CouponWebAppPhase2/")&&
-                !uriCurrentPath.equals("/CouponWebAppPhase2/index.html"))&&!uriCurrentPath.equals("/CouponWebAppPhase2/rest/login"));
+        boolean NotloggedIn=facade==null&&((!uriCurrentPath.equals("/CouponWebApp/")&&
+                !uriCurrentPath.equals("/CouponWebApp/index.html"))&&!uriCurrentPath.equals("/CouponWebApp/webapi/login"));
         if (NotloggedIn) {
             System.out.println("Authentication Filter Blocked! facade= " + facade);
             redirectPage(response,request);

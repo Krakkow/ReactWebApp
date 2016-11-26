@@ -1,7 +1,7 @@
 package coupon.web.app.exception;
 
 /**
- * @author ilya shusterman
+ * @author Or Kowalsky
  *
  */
 public enum ErrorTypeResource {
