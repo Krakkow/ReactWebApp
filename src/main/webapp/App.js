@@ -9,6 +9,7 @@ class App extends React.Component{
 
     constructor() {
         super();
+        console.log("hello")
         this.state = {
             didLoggedIn: false
         }
@@ -19,32 +20,32 @@ class App extends React.Component{
             loggedIn
         })
     }
-
+    handleLogin() {
+        return;
+    }
 
     componentWillMount() {
     }
-    renderLoginHome() {
-        if(!this.state.didLoggedIn) {
+
+    renderloginHome() {
+        if(this.state.didLoggedIn) {
             return (
                 <LoginForm loginUser={this.handleLogin} />
             )
         }
-        return (
-            <div>
-                you have logged in/1
-            </div>
-        )
+            return (
+                <h1>
+                    you have logged in/1
+                </h1>
+            )
+
     }
 
-    handleLogin(username, password, clientType) {
-        auth.login(username, password, clientType);
-        auth.onChange = this.updateAuth;
-    }
     render() {
         return (
             <div>
-                {this.renderLoginHome.bind(this)}
-                {/*<LoginForm loginUser={this.handleLogin.bind(this)} />*/}
+                {/*{this.renderloginHome}*/}
+                <LoginForm loginUser={this.handleLogin.bind(this)} />
             </div>
         );
     }
