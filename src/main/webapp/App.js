@@ -1,59 +1,40 @@
-import {React, PropTypes} from 'react'
-import {render} from 'react-dom'
-import {browserHistory, Router, Route, Link, withRouter} from 'react-router'
-import Header from './src/components/common/Header'
-import auth from './src/components/common/auth'
+import React from 'react';
+import LoginForm from './src/components/LoginForm';
 
-class App extends React.Component {
+class App extends React.Component{
 
     constructor() {
         super();
         this.state = {
-            loggedIn: auth.loggedIn()
+            didLoggedIn: false
         }
-    };
-
-    updateAuth(loggedIn) {
-        this.setState({
-            loggedIn
-        })
+    }
+    renderLoginHome() {
+        if(!this.state.didLoggedIn) {
+            return (
+                <LoginForm loginUser={this.handleLogin} />
+            )
+        }
+        return (
+            <div>
+                you have logged in/1
+            </div>
+        )
     }
 
-    componentWillMount() {
-        auth.onChange = this.updateAuth;
-        auth.login()
+    handleLogin() {
+        return;
     }
-
     render() {
         return (
-            // <div className="container-fluid">
-            //     <Header/>
-            //     {this.props.children}
-            // </div>
             <div>
-                <Header/>
-                <ul>
-                    <li>
-                        {this.state.loggedIn ? (
-                            <div>
-                                <Link to="/logout">Log out</Link>
-                                <li><Link to="/about">About</Link></li>
-                                <li><Link to="/dashboard">Dashboard</Link> (authenticated)</li>
-                            </div>
-                        ) : (
-                            <Link to="/login">Sign in</Link>
-                        )}
-                    </li>
-
-                </ul>
-                {this.props.children || <p>You are {!this.state.loggedIn && 'not'} logged in.</p>}
+                {/*{this.renderLoginHome.bind(this)}*/}
+                <LoginForm loginUser={this.handleLogin} />
             </div>
         );
-
     }
+
 }
 
-App.propTypes = {
-    children: PropTypes.object.isRequired
-};
 
+export default App;
