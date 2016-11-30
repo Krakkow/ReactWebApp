@@ -22,8 +22,6 @@ class App extends React.Component{
 
 
     componentWillMount() {
-        auth.onChange = this.updateAuth;
-        auth.login()
     }
     renderLoginHome() {
         if(!this.state.didLoggedIn) {
