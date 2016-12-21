@@ -9,16 +9,18 @@ class App extends React.Component{
   constructor() {
     super();
       this.state = {
-        didLoggedIn: false,
+          didLoggedIn: false,
           errorMessage: '',
           clientType: ''
       };
        this.handleLogin = this.handleLogin.bind(this);
+      this.handleLogoutClick = this.handleLogoutClick.bind(this);
     //  this.loginSuccess = this.loginSuccess.bind(this);
   }
 
     loginSuccess(){
-        this.setState({didLoggedIn: true});
+        this.setState({didLoggedIn: true,
+        errorMessage:'' });
     }
 
     handleLogin(username, password, clientType) {
@@ -34,7 +36,8 @@ class App extends React.Component{
                 console.log(response);
              //   this.loginSuccess();
                 self.setState({didLoggedIn: true,
-                clientType: clientType
+                clientType: clientType,
+                    errorMessage:''
                 });
             })
             .catch(function (error) {
@@ -46,13 +49,17 @@ class App extends React.Component{
         handleLogoutClick() {
         //logout post method from backend
             let self = this;
-        axios.get('webapi/logout')
+            axios.get('webapi/logout')
             .then(function (response) {
                 console.log(response);
-                self.setState({didLoggedIn: false});
+                self.setState({didLoggedIn: false
+                });
             })
             .catch(function (error) {
                 console.log(error.response.data);
+                self.setState({didLoggedIn: false,
+                    errorMessage:''
+                });
             });
     }
 
@@ -64,8 +71,8 @@ class App extends React.Component{
       if (isLoggedIn) { // if (!isLoggedIn) {
           renderElement = <LoginForm loginUser={this.handleLogin.bind(this)} />;
       } else {
-          renderElement = <Dashboard onClick={this.handleLogoutClick}  clientType="admin"/>;
-          // clientType={this.state.clientType}
+          renderElement = <Dashboard onLogoutClick={this.handleLogoutClick}  clientType="admin"/>;
+          // this is in server mode running : clientType={this.state.clientType}
       }
       let renderError= null;
       if(errorMessage == ''){
